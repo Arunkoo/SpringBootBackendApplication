@@ -1,5 +1,6 @@
 package com.arun.backend.controller;
 
+import com.arun.backend.dto.UserDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +50,9 @@ public class UserController {
         return requestHeaders.get("User-Agent") +" "+ requestHeaders.get("User-Location");
     }
 
-
+    @PostMapping("/profile")
+    String getUserProfile(@RequestBody UserDto userdto){
+        return "Profile of user: " + userdto;
+    }
 
 }
