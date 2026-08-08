@@ -35,4 +35,11 @@ public class UserController {
     String getRequestHeaders(@RequestHeader("User-Agent") String useragent, @RequestHeader("User-Location") String location){
         return useragent + location;
     }
+
+
+    //if i want to extract multiple headers than we can use map..to store..
+    @GetMapping("/headers/map")
+    String getRequestHeadersUsingMap(@RequestHeader Map<String, String> pathVariable){
+        return pathVariable.get("User-Agent") + pathVariable.get("User-Location");
+    }
 }
