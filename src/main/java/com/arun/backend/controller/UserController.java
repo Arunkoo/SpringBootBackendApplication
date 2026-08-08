@@ -1,5 +1,6 @@
 package com.arun.backend.controller;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -42,4 +43,10 @@ public class UserController {
     String getRequestHeadersUsingMap(@RequestHeader Map<String, String> pathVariable){
         return pathVariable.get("User-Agent") + pathVariable.get("User-Location");
     }
+
+    @GetMapping("/headers/http-headers")
+    String getRequestHeadersUsingHttpHeaders(@RequestHeader HttpHeaders requestHeaders){
+        return requestHeaders.get("User-Agent") +" "+ requestHeaders.get("User-Location");
+    }
+
 }
