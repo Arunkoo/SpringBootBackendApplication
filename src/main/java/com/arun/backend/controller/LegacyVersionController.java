@@ -1,10 +1,7 @@
 package com.arun.backend.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/legacy/version")
@@ -30,5 +27,16 @@ public class LegacyVersionController {
     @GetMapping(params = "version=2")
     public ResponseEntity<String> reqParamsV2Version(){
         return ResponseEntity.ok("Response from reqParamsV2Version API 2.0.0");
+    }
+
+    //using a reqHeaders versioning..
+    @GetMapping(headers = {"X-API-VERSION=1"})
+    public ResponseEntity<String> defaultReqHeadersVersion(){
+        return ResponseEntity.ok("Response from default reqHeaders version API 1.0.0");
+    }
+
+    @GetMapping(headers = {"X-API-VERSION=2"})
+    public ResponseEntity<String> reqHeadersV2Version(){
+        return ResponseEntity.ok("Response from reqHeadersV2Version API 2.0.0");
     }
 }
