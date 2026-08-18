@@ -2,6 +2,7 @@ package com.arun.backend.controller;
 
 import com.arun.backend.dto.UserDto;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -53,6 +54,14 @@ public class UserController {
     @PostMapping("/profile")
     String getUserProfile(@RequestBody UserDto userdto){
         return "Profile of user: " + userdto;
+    }
+
+    @PostMapping("/request-entity")
+    public String createUserWithRequestEntity(RequestEntity<UserDto> requestEntity){
+        UserDto userDto = requestEntity.getBody();
+        HttpHeaders http_headers = requestEntity.getHeaders();
+        String url = requestEntity.getUrl().getQuery();
+        return "created user" + userDto.toString();
     }
 
 }
